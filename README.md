@@ -17,6 +17,9 @@ The initial front end build out took several days and was not well document;
 I will strive to improve on this backend build out and further updates tot he front end React application.
 
 06-12-2022 12:30 PM (Eastern) Frontend initial buildout complete, one minor bug remains (aesthetic not functional) which will be addressed in the next frontend treatment.
+
+06-13-2022: While trying to implement some improvements and expanded functionality (attribution: courtesy Hexx King's lecture) I managed to break the application and haven't yet worked out how to fix it.
+
 =====================================================
 Name of feature: Lab 6: Custom Servers with Node and Express
 Estimate of time needed to complete: 5 hours
