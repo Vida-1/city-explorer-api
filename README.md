@@ -34,8 +34,9 @@ Finish time:
 Actual time needed to complete: 
 =====================================================
 
-## Credit and Collaborations
+## Attributions
 With many thanks to:
+* Note: This is a 301 assignment modeled VERY closely to code presented during lecture
 * Hexx King, Kassie (Remo TA), and Tammy Ho (Remo TA) - for their guidance and bug-hunt assistance
 
 
