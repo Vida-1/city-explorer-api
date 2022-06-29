@@ -17,35 +17,39 @@ app.get('/', (request, response) => { // the slash denotes http://localhost:3000
 });
 
 
-app.get('/weather', async (request, response) => {
-  let lat = request.query.lat;
-  let lon = request.query.lon;
-  let searchQuery = request.query.searchQuery;
-  // const city = weather.find(cityObj.city_name.toLowerCase() === searchQuery.toLowerCase()); // lab 7 only
-  try {
-    const weatherArray = city.data.map(day => new Forecast(day));
-    response.status(200).send(weatherArray);
-    // const url = `https://api.moviesbit.io/v2.0/forecast/daily?key=${process.env.MOVIE_API_KEY}&days=3&lat=${lat}&long=${lon}`;
-    // console.log('URL: ', url);
-    // const moviesData = await axios.get(url);
-    // console.log(moviesData.data);
-  } catch (error) {
-    console.error(error);
-    response.status(500).send('city not found');
-  }
-});
+// app.get('/weather', async (request, response) => {
+//   let lat = request.query.lat;
+//   let lon = request.query.lon;
+//   console.log(request.query);
+
+//   // let searchQuery = request.query.searchQuery;  //lab7 only
+//   // const city = weather.find(cityObj.city_name.toLowerCase() === searchQuery.toLowerCase()); // lab 7 only
+
+//   try {
+//     const url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.MOVIE_API_KEY}&days=3&lat=${lat}&lon=${lon}`;
+//     console.log('URL: ', url);
+//     const weatherData = await axios.get(url);
+//     console.log(`this is the data you are looking for: `, weatherData.data);
+//     const weatherArray = weatherData.data.data.map(day => new Forecast(day));
+//     response.status(200).send(weatherArray);
+
+//   } catch (error) {
+//     console.error(error);
+//     response.status(500).send('city not found');
+//   }
+// });
 
 class Forecast {   // class for `Forecast`, that has properties of `date` and `description`
   constructor(day) {
     this.day = day.valid_date;
-    this.description = day.movies.description;
+    this.description = day.weatherData.description;
   }
 }
 
 app.get('/movies', async (request, response) => {  // Adding movie endpoint
   let searchQuery = request.query.searchQuery;
   try {
-    const url = `https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}&query=$[searchQuery}&language-en-US&page=1`;
+    const url = `https://api.themoviedb.org/3/search/movie/?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}&language=en-US&page=1`;
     console.log('URL: ', url);
     const moviesData = await axios.get(url);
     console.log(moviesData.data);
@@ -61,9 +65,9 @@ class Movies {
   constructor(movie) {
     this.title = movie.title;
     this.overview = movie.overview;
-    this.average_votes = movies.vote_average;
+    this.average_votes = movie.vote_average;
     this.total_votes = movie.vote_count;
-    this.image_url = 'https://image.tmdb.org/t/p/w/500' + movie.poster_path;
+    this.image_url = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
     this.popularity = movie.popularity;
     this.released_on = movie.release_date;
   }
