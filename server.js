@@ -45,7 +45,7 @@ class Forecast {   // class for `Forecast`, that has properties of `date` and `d
 app.get('/movies', async (request, response) => {  // Adding movie endpoint
   let searchQuery = request.query.searchQuery;
   try {
-    const url = `https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}&query=$[searchQuery}&language-en-US&page=1`;
+    const url = `https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}&language-en-US&page=1`;
     console.log('URL: ', url);
     const moviesData = await axios.get(url);
     console.log(moviesData.data);
@@ -61,7 +61,7 @@ class Movies {
   constructor(movie) {
     this.title = movie.title;
     this.overview = movie.overview;
-    this.average_votes = movies.vote_average;
+    this.average_votes = movie.vote_average;
     this.total_votes = movie.vote_count;
     this.image_url = 'https://image.tmdb.org/t/p/w/500' + movie.poster_path;
     this.popularity = movie.popularity;
